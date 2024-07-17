@@ -51,11 +51,15 @@ async function run() {
             gameUi.hideShop();
             gameUi.hideMain();
 
-            game.scene.start('DoodleJump');
+            //game.scene.start('DoodleJump');
+            gameScene.reset();
         });
+        gameScene.onScoreChanged = (score) => {
+            gameUi.setScore(score);
+        };
         gameScene.onGameOver = (results) => {
             gameUi.showMain(true, results);
-        }
+        };
 
         gameUi.transitionToGame();
         gameUi.showMain(false);

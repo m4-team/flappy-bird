@@ -1,3 +1,4 @@
+import { GAME_HEIGHT, GAME_WIDTH } from "./consts";
 
 export class Doodle extends Phaser.GameObjects.Image {
     facing: number = 1;
@@ -8,11 +9,21 @@ export class Doodle extends Phaser.GameObjects.Image {
     jumpCount: number = 0;
     isDead: boolean = false;
 
-    constructor(scene: Phaser.Scene, x: number, y: number) {
-        super(scene, x, y, 'atlas', 'doodle-right');
+    constructor(scene: Phaser.Scene) {
+        super(scene, 0, 0, 'atlas', 'doodle-right');
         this.displayWidth = 55;
         this.displayHeight = 40;
         scene.add.existing(this);
+        this.reset();
+    }
+
+    reset() {
+        this.x = GAME_WIDTH / 2;
+        this.y = GAME_HEIGHT;
+        this.vx = 0;
+        this.vy = 11;
+        this.isDead = false;
+        this.jumpCount = 0;
     }
 
     jump() {

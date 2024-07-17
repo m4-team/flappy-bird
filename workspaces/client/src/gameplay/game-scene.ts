@@ -16,6 +16,7 @@ export class GameScene extends Phaser.Scene {
     isGameOver:boolean = false;
     isGameOverFalling:boolean = false;
 
+    onScoreChanged?: (score: number) => void;
     onGameOver?: (results?: { reward: 0, achievements: string[] } | { error: string }) => void;
     
     /*
@@ -52,20 +53,37 @@ export class GameScene extends Phaser.Scene {
         this.background = this.add.tileSprite(GAME_WIDTH / 2, GAME_HEIGHT / 2, GAME_WIDTH, GAME_HEIGHT, 'bg');
         this.background.tileScaleX = this.background.tileScaleY = GAME_HEIGHT / BG_HEIGHT;
 
-        for (let i = 0; i < PLATFORM_COUNT; i++) {
-            const platform = new Platform(this.getRandomPlatformType(), this, this.newPlatformY);
-            this.newPlatformY += GAME_HEIGHT / PLATFORM_COUNT;
-            this.platforms.push(platform);
-        }
-
         this.spring = new Spring(this);
-        this.doodle = new Doodle(this, GAME_WIDTH / 2, GAME_HEIGHT / 2);
+        this.doodle = new Doodle(this);
 
         // this.input.on('pointerdown', () => this.onInput());
         this.input.keyboard?.on('keydown', (e: KeyboardEvent) => this.onKeyDown(e));
         this.input.keyboard?.on('keyup', (e: KeyboardEvent) => this.onKeyUp(e));
         this.input.on('pointerdown', (e: PointerEvent) => this.onPointerDown(e));
         this.input.on('pointerup', (e: PointerEvent) => this.onPointerUp(e));
+    }
+
+    reset() {
+        this.score = 0;
+        if (this.onScoreChanged) {
+            this.onScoreChanged(this.score);
+        }
+        this.isGameOver = false;
+        this.isGameOverFalling = false;
+        this.doodle.reset();
+
+        this.newPlatformY = 0;
+        this.platforms.forEach((platform) => {
+            platform.destroy();
+        });
+        this.platforms = [];
+        for (let i = 0; i < PLATFORM_COUNT; i++) {
+            const platform = new Platform(this.getRandomPlatformType(), this, this.newPlatformY);
+            this.newPlatformY += GAME_HEIGHT / PLATFORM_COUNT;
+            this.platforms.push(platform);
+        }
+
+        this.base.y = GAME_HEIGHT - this.base.displayHeight;    
     }
 
     onKeyDown(e: KeyboardEvent) {
@@ -75,6 +93,8 @@ export class GameScene extends Phaser.Scene {
         } else if (e.key === 'd') {
             this.doodle.facing = 1;
             this.doodle.isMovingRight = true;
+        } else if (e.key === ' ') {
+            this.reset();
         }
     }
     onKeyUp(e: KeyboardEvent) {
@@ -144,6 +164,9 @@ export class GameScene extends Phaser.Scene {
             }
 
             this.score++;
+            if (this.onScoreChanged) {
+                this.onScoreChanged(this.score);
+            }    
         }
 
 		//Make the player jump when it collides with platforms
