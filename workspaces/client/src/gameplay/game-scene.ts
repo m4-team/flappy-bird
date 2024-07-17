@@ -64,8 +64,8 @@ export class GameScene extends Phaser.Scene {
         // this.input.on('pointerdown', () => this.onInput());
         this.input.keyboard?.on('keydown', (e: KeyboardEvent) => this.onKeyDown(e));
         this.input.keyboard?.on('keyup', (e: KeyboardEvent) => this.onKeyUp(e));
-        this.input.on('touchstart', (e: TouchEvent) => this.onTouchStart(e));
-        this.input.on('touchend', (e: TouchEvent) => this.onTouchEnd(e));
+        this.input.on('pointerdown', (e: PointerEvent) => this.onPointerDown(e));
+        this.input.on('pointerup', (e: PointerEvent) => this.onPointerUp(e));
     }
 
     onKeyDown(e: KeyboardEvent) {
@@ -85,8 +85,8 @@ export class GameScene extends Phaser.Scene {
         }
     }    
 
-    onTouchStart(e: TouchEvent) {
-        if (e.touches[0].clientX < GAME_WIDTH / 2) {
+    onPointerDown(e: PointerEvent) {
+        if (e.x < GAME_WIDTH / 2) {
             this.doodle.facing = -1;
             this.doodle.isMovingLeft = true;
         } else {
@@ -94,7 +94,7 @@ export class GameScene extends Phaser.Scene {
             this.doodle.isMovingRight = true;
         }
     }
-    onTouchEnd(e: TouchEvent) {
+    onPointerUp(e: PointerEvent) {
         this.doodle.isMovingLeft = false;
         this.doodle.isMovingRight = false;
     }
