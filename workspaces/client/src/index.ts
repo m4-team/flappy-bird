@@ -3,8 +3,8 @@ import { Wallet } from '@ton/phaser-sdk';
 import { UI } from './ui';
 import { ConnectWalletCanvasScene, createConnectUi } from './connect-wallet-ui';
 import { loadConfig } from './config';
-import { GAME_HEIGHT, GAME_WIDTH } from './consts';
-import { GameScene } from './game-scene';
+import { GAME_HEIGHT, GAME_WIDTH } from './gameplay/consts';
+import { GameScene } from './gameplay/game-scene';
 
 async function run() {
     try {
@@ -18,7 +18,8 @@ async function run() {
         const gameUi = new UI(config, gameFi);
 
         // create game scenes
-        const scenes: Phaser.Scene[] = [new GameScene(gameUi)];
+        const gameScene = new GameScene();
+        const scenes: Phaser.Scene[] = [gameScene];
         if (connectUi instanceof ConnectWalletCanvasScene) {
             scenes.push(connectUi);
         }
@@ -35,15 +36,30 @@ async function run() {
                 keyboard: true,
             },
             scale: {
-                mode: Phaser.Scale.NONE,
+                mode: Phaser.Scale.FIT,
                 parent: document.body,
                 width: GAME_WIDTH,
                 height: GAME_HEIGHT,
+                autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
             },
         });
         // You can install Devtools for PixiJS - https://github.com/bfanger/pixi-inspector#installation
         // @ts-ignore
         globalThis.__PHASER_GAME__ = game;
+
+        gameUi.onPlayClicked(() => {
+            gameUi.hideShop();
+            gameUi.hideMain();
+
+            game.scene.start('DoodleJump');
+        });
+        gameScene.onGameOver = (results) => {
+            gameUi.showMain(true, results);
+        }
+
+        gameUi.transitionToGame();
+        gameUi.showMain(false);
+        return;
 
         // if wallet connected - show game UI
         // if not - show only connection button

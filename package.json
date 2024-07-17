@@ -11,5 +11,9 @@
         "concurrently": "^8.2.2",
         "cross-env": "^7.0.3",
         "env-cmd": "^10.1.0"
+    },
+    "dependencies": {
+        "sqlite3": "^5.1.7",
+        "typescript": "^5.5.3"
     }
 }

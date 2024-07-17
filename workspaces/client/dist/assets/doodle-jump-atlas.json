@@ -1,0 +1,118 @@
+{"frames": [
+    {
+        "filename": "platform-1",
+        "frame": {"x":0,"y":0,"w":105,"h":31},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":105,"h":31},
+        "sourceSize": {"w":105,"h":31},
+        "pivot": {"x":0.0,"y":0.0}
+    },
+    {
+        "filename": "platform-3",
+        "frame": {"x":0,"y":31,"w":105,"h":31},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":105,"h":31},
+        "sourceSize": {"w":105,"h":31},
+        "pivot": {"x":0.0,"y":0.0}
+    },
+    {
+        "filename": "platform-2",
+        "frame": {"x":0,"y":60,"w":105,"h":31},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":105,"h":31},
+        "sourceSize": {"w":105,"h":31},
+        "pivot": {"x":0.0,"y":0.0}
+    },
+    {
+        "filename": "platform-4",
+        "frame": {"x":0,"y":90,"w":105,"h":31},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":105,"h":31},
+        "sourceSize": {"w":105,"h":31},
+        "pivot": {"x":0.0,"y":0.0}
+    },
+    {
+        "filename": "doodle-right",
+        "frame": {"x":0,"y":121,"w":110,"h":80},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":110,"h":80},
+        "sourceSize": {"w":110,"h":80},
+        "pivot": {"x":0.0,"y":0.0}
+    },
+    {
+        "filename": "doodle-left",
+        "frame": {"x":0,"y":201,"w":110,"h":80},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":110,"h":80},
+        "sourceSize": {"w":110,"h":80},
+        "pivot": {"x":0.0,"y":0.0}
+    },
+    {
+        "filename": "doodle-right-land",
+        "frame": {"x":0,"y":289,"w":110,"h":80},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":110,"h":80},
+        "sourceSize": {"w":110,"h":80},
+        "pivot": {"x":0.0,"y":0.0}
+    },
+    {
+        "filename": "doodle-left-land",
+        "frame": {"x":0,"y":371,"w":110,"h":80},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":110,"h":80},
+        "sourceSize": {"w":110,"h":80},
+        "pivot": {"x":0.0,"y":0.0}
+    },
+    {
+        "filename": "spring",
+        "frame": {"x":0,"y":445,"w":45,"h":53},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":45,"h":53},
+        "sourceSize": {"w":45,"h":53},
+        "pivot": {"x":0.0,"y":0.0}
+    },
+    {
+        "filename": "spring-up",
+        "frame": {"x":0,"y":501,"w":45,"h":53},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":45,"h":53},
+        "sourceSize": {"w":45,"h":53},
+        "pivot": {"x":0.0,"y":0.0}
+    },
+    {
+        "filename": "platform-broken",
+        "frame": {"x":0,"y":554,"w":105,"h":60},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":105,"h":60},
+        "sourceSize": {"w":105,"h":60},
+        "pivot": {"x":0.0,"y":0.0}
+    },
+    {
+        "filename": "base",
+        "frame": {"x":0,"y":614,"w":100,"h":5},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":100,"h":5},
+        "sourceSize": {"w":100,"h":5},
+        "pivot": {"x":0.0,"y":0.0}
+    }],
+    "meta": {
+        "app": "http://www.codeandweb.com/texturepacker",
+        "version": "1.0",
+        "image": "doodle-jump-atlas.png",
+        "format": "RGBA8888",
+        "size": {"w":110,"h":699},
+        "scale": "1"
+    }
+}
