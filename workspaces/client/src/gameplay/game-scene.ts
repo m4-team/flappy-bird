@@ -3,6 +3,7 @@ import { BG_HEIGHT, COLUMN_ACCEL, COLUMN_TIME_ACCEL, FLAP_THRESH, GAME_HEIGHT, G
 import { Platform, PlatformType } from './platform';
 import { Doodle } from './doodle';
 import { Spring } from './spring';
+import { Accelerometer, ACCELEROMETER_UPDATE } from './accelerometer';
 
 export class GameScene extends Phaser.Scene {
     doodle!: Doodle;
@@ -15,6 +16,7 @@ export class GameScene extends Phaser.Scene {
     newPlatformY : number = 0;
     isGameOver:boolean = false;
     isGameOverFalling:boolean = false;
+    accelerometer!: Accelerometer;
 
     onScoreChanged?: (score: number) => void;
     onGameOver?: (results?: { reward: 0, achievements: string[] } | { error: string }) => void;
@@ -61,6 +63,8 @@ export class GameScene extends Phaser.Scene {
         this.input.keyboard?.on('keyup', (e: KeyboardEvent) => this.onKeyUp(e));
         this.input.on('pointerdown', (e: PointerEvent) => this.onPointerDown(e));
         this.input.on('pointerup', (e: PointerEvent) => this.onPointerUp(e));
+        this.accelerometer = new Accelerometer(this);
+        this.accelerometer.on(ACCELEROMETER_UPDATE, (x:number) => this.onAccelerometerUpdate(x));
     }
 
     reset() {
@@ -117,6 +121,18 @@ export class GameScene extends Phaser.Scene {
     onPointerUp(e: PointerEvent) {
         this.doodle.isMovingLeft = false;
         this.doodle.isMovingRight = false;
+    }
+
+    onAccelerometerUpdate(x: number) {
+        if (x < 0) {
+            this.doodle.facing = -1;
+            this.doodle.isMovingLeft = true;
+            this.doodle.isMovingRight = false;
+        } else if (x > 0) {
+            this.doodle.facing = 1;
+            this.doodle.isMovingRight = true;
+            this.doodle.isMovingLeft = false;
+        }
     }
 
     update(time: number, delta: number): void {
